@@ -37,7 +37,7 @@ const formSchema = z.object({
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
-  availableSizes: z.string().nullable()
+  availableSizes: z.string()
 });
 
 type ProductFormValues = z.infer<typeof formSchema>
