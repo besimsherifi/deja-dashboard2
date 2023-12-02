@@ -21,43 +21,43 @@ export function MainNav({
         ,
         {
             href: `/${params.storeId}/billboards`,
-            label: "Billboards",
+            label: "Werbetafeln",
             active: pathname === `/${params.storeId}/billboards`
         }
-        , 
+        ,
         {
             href: `/${params.storeId}/categories`,
-            label: "Categories",
+            label: "Kategorien",
             active: pathname === `/${params.storeId}/categories`
         }
         ,
         {
             href: `/${params.storeId}/sizes`,
-            label: "Sizes",
+            label: "Größen",
             active: pathname === `/${params.storeId}/sizes`
         }
         ,
         {
             href: `/${params.storeId}/colors`,
-            label: "Colors",
+            label: "Farben",
             active: pathname === `/${params.storeId}/colors`
         }
         ,
         {
             href: `/${params.storeId}/products`,
-            label: "Products",
+            label: "Produkte",
             active: pathname === `/${params.storeId}/products`
         }
         ,
         {
             href: `/${params.storeId}/orders`,
-            label: "Orders",
+            label: "Bestellungen",
             active: pathname === `/${params.storeId}/orders`
         }
         ,
         {
             href: `/${params.storeId}/settings`,
-            label: "Settings",
+            label: "Einstellungen",
             active: pathname === `/${params.storeId}/settings`
         }
     ];

@@ -7,11 +7,11 @@ import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useCategoryModal } from "@/hooks/use-category-modal";
@@ -35,10 +35,10 @@ export const CellAction: React.FC<CellActionProps> = ({
     try {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
-      toast.success('Category deleted.');
+      toast.success('Kategorie gelöscht.');
       router.refresh();
     } catch (error) {
-      toast.error('Make sure you removed all products using this category first.');
+      toast.error('Stellen Sie sicher, dass Sie zuerst alle Produkte entfernt haben, die diese Kategorie verwenden.');
     } finally {
       setOpen(false);
       setLoading(false);
@@ -52,8 +52,8 @@ export const CellAction: React.FC<CellActionProps> = ({
 
   return (
     <>
-      <AlertModal 
-        isOpen={open} 
+      <AlertModal
+        isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onConfirm}
         loading={loading}
@@ -75,12 +75,12 @@ export const CellAction: React.FC<CellActionProps> = ({
           <DropdownMenuItem
             onClick={() => router.push(`/${params.storeId}/categories/${data.id}`)}
           >
-            <Edit className="mr-2 h-4 w-4" /> Update
+            <Edit className="mr-2 h-4 w-4" /> Aktualisieren
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setOpen(true)}
           >
-            <Trash className="mr-2 h-4 w-4" /> Delete
+            <Trash className="mr-2 h-4 w-4" /> Löschen
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

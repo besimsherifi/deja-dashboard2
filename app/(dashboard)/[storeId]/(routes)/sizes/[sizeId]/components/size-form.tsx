@@ -45,10 +45,10 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? 'Edit size' : 'Create size';
-  const description = initialData ? 'Edit a size.' : 'Add a new size';
-  const toastMessage = initialData ? 'Size updated.' : 'Size created.';
-  const action = initialData ? 'Save changes' : 'Create';
+  const title = initialData ? 'Größe bearbeiten' : 'Größe erstellen';
+  const description = initialData ? 'Bearbeiten Sie eine Größe' : 'Eine neue Größe hinzufügen';
+  const toastMessage = initialData ? 'Größe aktualisiert' : 'Größe erstellt';
+  const action = initialData ? 'Änderungen speichern' : 'Erstellen';
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
@@ -70,7 +70,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       router.push(`/${params.storeId}/sizes`);
       toast.success(toastMessage);
     } catch (error: any) {
-      toast.error('Something went wrong.');
+      toast.error('Etwas ist schief gelaufen.');
     } finally {
       setLoading(false);
     }
@@ -82,9 +82,9 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
       router.refresh();
       router.push(`/${params.storeId}/sizes`);
-      toast.success('Size deleted.');
+      toast.success('Größe gelöscht');
     } catch (error: any) {
-      toast.error('Make sure you removed all products using this size first.');
+      toast.error('Stellen Sie sicher, dass Sie zuerst alle Produkte mit dieser Größe entfernt haben');
     } finally {
       setLoading(false);
       setOpen(false);
@@ -93,13 +93,13 @@ export const SizeForm: React.FC<SizeFormProps> = ({
 
   return (
     <>
-    <AlertModal 
-      isOpen={open} 
-      onClose={() => setOpen(false)}
-      onConfirm={onDelete}
-      loading={loading}
-    />
-     <div className="flex items-center justify-between">
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      />
+      <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (
           <Button
@@ -121,7 +121,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label</FormLabel>
+                  <FormLabel>Etikett</FormLabel>
                   <FormControl>
                     <Input disabled={loading} placeholder="Size name" {...field} />
                   </FormControl>
@@ -134,7 +134,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>Wert</FormLabel>
                   <FormControl>
                     <Input disabled={loading} placeholder="Size value" {...field} />
                   </FormControl>
