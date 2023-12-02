@@ -203,7 +203,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 <FormItem>
                   <FormLabel>Verfügbare Größen</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} value={field.value ?? ''} placeholder="Dies gilt nur für Ringe" {...field} />
+                    <Input disabled={loading} value={field.value ?? '' as String} placeholder="Dies gilt nur für Ringe" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
