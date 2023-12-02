@@ -209,7 +209,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     {/* <Input disabled={loading} value={field.value ?? ''} placeholder="Dies gilt nur für Ringe" {...field} /> */}
                     <Input
                       disabled={loading}
-                      value={(field.value ?? '')!}
+                      value={(field.value ?? '') as string | number | readonly string[]}
                       placeholder="Dies gilt nur für Ringe"
                       {...field}
                     />
