@@ -44,6 +44,7 @@ type ProductFormValues = z.infer<typeof formSchema>
 
 interface ProductFormProps {
   initialData: Product & {
+    availableSizes: string | number | readonly string[] | null | undefined
     images: Image[]
   } | null;
   categories: Category[];
