@@ -81,7 +81,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     sizeId: '',
     isFeatured: false,
     isArchived: false,
-    availableSizes: ''
+    availableSizes: null, // Changed from an empty string to null
   }
 
   const form = useForm<ProductFormValues>({
