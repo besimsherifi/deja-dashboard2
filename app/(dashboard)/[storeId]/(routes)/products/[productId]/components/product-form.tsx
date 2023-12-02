@@ -40,7 +40,7 @@ const formSchema = z.object({
   availableSizes: z.string().nullable().optional(),
 });
 
-type ProductFormValues = z.infer<typeof formSchema>
+type ProductFormValues = z.infer<typeof formSchema> & { availableSizes: string | number | readonly string[] | null | undefined }
 
 interface ProductFormProps {
   initialData: Product & {
@@ -72,7 +72,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const defaultValues = initialData ? {
     ...initialData,
     price: parseFloat(String(initialData?.price)),
-    availableSizes: initialData.availableSizes || ''
   } : {
     name: '',
     images: [],
@@ -90,7 +89,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     defaultValues
   });
 
-  console.log(defaultValues);
+
 
 
 
