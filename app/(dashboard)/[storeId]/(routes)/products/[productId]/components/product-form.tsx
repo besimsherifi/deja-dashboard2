@@ -37,7 +37,7 @@ const formSchema = z.object({
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
-  availableSizes: z.string().default(""),
+  availableSizes: z.string().optional(),
 });
 
 type ProductFormValues = z.infer<typeof formSchema>
@@ -87,6 +87,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     resolver: zodResolver(formSchema),
     defaultValues
   });
+
+  console.log(defaultValues);
 
 
 
@@ -206,7 +208,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     {/* <Input disabled={loading} value={field.value ?? ''} placeholder="Dies gilt nur für Ringe" {...field} /> */}
                     <Input
                       disabled={loading}
-                      value={'9900'}
+                      value={defaultValues.availableSizes}
                       placeholder="Dies gilt nur für Ringe"
                       {...field}
                     />
