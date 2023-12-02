@@ -37,7 +37,7 @@ const formSchema = z.object({
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
-  availableSizes: z.string().nullable().default(null)
+  availableSizes: z.string().default(""),
 });
 
 type ProductFormValues = z.infer<typeof formSchema>
@@ -71,7 +71,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const defaultValues = initialData ? {
     ...initialData,
     price: parseFloat(String(initialData?.price)),
-    availableSizes: initialData?.availableSizes ?? '', // Use an empty string if it's null
   } : {
     name: '',
     images: [],
@@ -207,7 +206,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     {/* <Input disabled={loading} value={field.value ?? ''} placeholder="Dies gilt nur für Ringe" {...field} /> */}
                     <Input
                       disabled={loading}
-                      value={field.value ?? ''}
+                      value={field.value ? null : ''}
                       placeholder="Dies gilt nur für Ringe"
                       {...field}
                     />
