@@ -38,6 +38,7 @@ const formSchema = z.object({
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
   availableSizes: z.string().nullable().optional(),
+  availableQuantity: z.coerce.number().min(1)
 });
 
 type ProductFormValues = z.infer<typeof formSchema> & { availableSizes: string | number | readonly string[] | null | undefined }
@@ -81,7 +82,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     sizeId: '',
     isFeatured: false,
     isArchived: false,
-    availableSizes: null, // Changed from an empty string to null
+    availableSizes: null,
+    availableQuantity: 1
   }
 
   const form = useForm<ProductFormValues>({
@@ -100,8 +102,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         await axios.patch(`/api/${params.storeId}/products/${params.productId}`, data);
       } else {
         await axios.post(`/api/${params.storeId}/products`, data);
-        console.log(data);
-
       }
       router.refresh();
       router.push(`/${params.storeId}/products`);
@@ -194,6 +194,19 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Preis</FormLabel>
                   <FormControl>
                     <Input type="number" disabled={loading} placeholder="9.99" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="availableQuantity"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Menge</FormLabel>
+                  <FormControl>
+                    <Input type="number" disabled={loading} placeholder="" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

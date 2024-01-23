@@ -12,7 +12,7 @@ export async function POST(
 
     const body = await req.json();
 
-    const { name, price, categoryId, colorId, sizeId, images, isFeatured, isArchived,availableSizes } = body;
+    const { name, price, categoryId, colorId, sizeId, images, isFeatured, isArchived, availableSizes, availableQuantity } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -68,6 +68,7 @@ export async function POST(
         sizeId,
         storeId: params.storeId,
         availableSizes,
+        availableQuantity,
         images: {
           createMany: {
             data: [
@@ -77,7 +78,7 @@ export async function POST(
         },
       },
     });
-  
+
     return NextResponse.json(product);
   } catch (error) {
     console.log('[PRODUCTS_POST]', error);
@@ -119,7 +120,7 @@ export async function GET(
         createdAt: 'desc',
       }
     });
-  
+
     return NextResponse.json(products);
   } catch (error) {
     console.log('[PRODUCTS_GET]', error);
