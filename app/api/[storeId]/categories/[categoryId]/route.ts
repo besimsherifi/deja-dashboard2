@@ -17,10 +17,10 @@ export async function GET(
         id: params.categoryId
       },
       include: {
-        billboard: true
+        Billboard: true
       }
     });
-  
+
     return NextResponse.json(category);
   } catch (error) {
     console.log('[CATEGORY_GET]', error);
@@ -59,7 +59,7 @@ export async function DELETE(
         id: params.categoryId,
       }
     });
-  
+
     return NextResponse.json(category);
   } catch (error) {
     console.log('[CATEGORY_DELETE]', error);
@@ -72,13 +72,13 @@ export async function PATCH(
   req: Request,
   { params }: { params: { categoryId: string, storeId: string } }
 ) {
-  try {   
+  try {
     const { userId } = auth();
 
     const body = await req.json();
-    
+
     const { name, billboardId } = body;
-    
+
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
     }
@@ -115,7 +115,7 @@ export async function PATCH(
         billboardId
       }
     });
-  
+
     return NextResponse.json(category);
   } catch (error) {
     console.log('[CATEGORY_PATCH]', error);

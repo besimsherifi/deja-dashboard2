@@ -18,9 +18,9 @@ export async function GET(
       },
       include: {
         images: true,
-        category: true,
-        size: true,
-        color: true,
+        Category: true,
+        Size: true,
+        Color: true,
       }
     });
 
@@ -57,6 +57,14 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
+    // Step 1: Delete related Image records
+    await prismadb.image.deleteMany({
+      where: {
+        productId: params.productId,
+      }
+    });
+
+    // Step 2: Delete the Product
     const product = await prismadb.product.delete({
       where: {
         id: params.productId

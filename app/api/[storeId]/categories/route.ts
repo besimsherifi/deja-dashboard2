@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 
 import prismadb from '@/lib/prismadb';
- 
+
 export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
@@ -21,7 +21,7 @@ export async function POST(
     if (!name) {
       return new NextResponse("Name is required", { status: 400 });
     }
-    
+
     if (!billboardId) {
       return new NextResponse("Billboard ID is required", { status: 400 });
     }
@@ -48,7 +48,7 @@ export async function POST(
         storeId: params.storeId,
       }
     });
-  
+
     return NextResponse.json(category);
   } catch (error) {
     console.log('[CATEGORIES_POST]', error);
@@ -70,7 +70,7 @@ export async function GET(
         storeId: params.storeId
       }
     });
-  
+
     return NextResponse.json(categories);
   } catch (error) {
     console.log('[CATEGORIES_GET]', error);

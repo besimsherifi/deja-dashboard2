@@ -1,19 +1,20 @@
 import prismadb from "@/lib/prismadb";
-
 import { BillboardForm } from "./components/billboard-form";
 
-const BillboardPage = async ({
-  params
-}: {
-  params: { billboardId: string }
-}) => {
-  const billboard = await prismadb.billboard.findUnique({
-    where: {
-      id: params.billboardId
-    }
-  });
+// Function to validate ObjectId format
+const isValidObjectId = (id) => /^[0-9a-fA-F]{24}$/.test(id);
 
-  return ( 
+const BillboardPage = async ({ params }: { params: { billboardId: string } }) => {
+  let billboard = null;
+
+  // Validate billboardId to be ObjectId
+  if (isValidObjectId(params.billboardId) && params.billboardId !== "new") {
+    billboard = await prismadb.billboard.findUnique({
+      where: { id: params.billboardId },
+    });
+  }
+
+  return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <BillboardForm initialData={billboard} />
