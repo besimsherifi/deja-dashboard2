@@ -13,7 +13,7 @@ const ColorPage = async ({
         include: {
             orderItems: {
                 include: {
-                    product: true,
+                    Product: true,
                 },
             },
         },
@@ -34,7 +34,7 @@ const ColorPage = async ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
                     {order.orderItems.map((orderItem) => (
-                        <OrderCard key={orderItem.id} name={orderItem.product.name} color={orderItem.color} size={orderItem.size} quantity={orderItem.quantity} id={orderItem.product.id} />
+                        <OrderCard key={orderItem.id} name={orderItem.Product.name} color={orderItem.color} size={orderItem.size} quantity={orderItem.quantity} id={orderItem.Product.id} />
                     ))}
                 </div>
 
