@@ -112,9 +112,9 @@ export async function GET(
       },
       include: {
         images: true,
-        category: true,
-        color: true,
-        size: true,
+        Category: true,
+        Color: true,
+        Size: true,
       },
       orderBy: {
         createdAt: 'desc',

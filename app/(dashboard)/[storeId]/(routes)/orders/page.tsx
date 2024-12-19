@@ -19,7 +19,7 @@ const OrdersPage = async ({
     include: {
       orderItems: {
         include: {
-          product: true,
+          Product: true,
         }
       }
     },
